@@ -57,13 +57,12 @@ def checkout(cart, coupons)
   
     if cart.length > 1;
       total = 0
+      apply_coupons(cart, coupons)
+      apply_clearance(cart)
+      
       cart.each do |item|
         total += item.values[0][:price]
       end
       return  total
-    if cart.length > 1;
-          apply_coupons(cart, coupons)
-          apply_clearance(cart)
-      end
     end
 end
