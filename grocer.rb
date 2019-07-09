@@ -60,7 +60,8 @@ def checkout(cart, coupons)
       apply_coupons(cart, coupons)
       apply_clearance(cart)
       
-      cart.each do |item|
+      cart.each do |item, value|
+        binding.pry
         total += item.values[0][:price]
       end
       return  total
