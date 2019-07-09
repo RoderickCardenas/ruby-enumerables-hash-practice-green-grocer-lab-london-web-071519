@@ -47,27 +47,23 @@ def apply_clearance(cart)
 end
 require 'pry'
 def checkout(cart, coupons)
-   newCart = {}
    
   if cart.length == 1
     consolidate_cart(cart)
     apply_coupons(cart[0], coupons)
     apply_clearance(cart[0])
-     
-  cart[0].values[0][:price]
+    return cart[0].values[0][:price]
   end
   
-  if cart.length > 1;
-  
-    cart.each do |item|
-          newCart[item]
-  end
-  
-    if newCart.length > 1;
-      apply_coupons(newCart, coupons)
-      apply_clearance(newCart)
-      newCart[0].values[0][:price]
+    if cart.length > 1;
+      total = 0
+      cart.each do |item|
+        total += item.values[0][:price]
+      end
+      return  total
+    if cart.length > 1;
+          apply_coupons(cart, coupons)
+          apply_clearance(cart)
+      end
     end
-  end
-
 end
